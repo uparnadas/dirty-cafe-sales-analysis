@@ -108,54 +108,69 @@ Project Status
  Exploratory Data Analysis
  SQL Analysis
 
-SQL Analysis
+## SQL Analysis
 
-The cleaned café sales data was loaded into SQL Server using a relational database structure consisting of dimension tables for products, payment methods, and locations, along with a central transactions table.
+The cleaned café sales data was loaded into **SQL Server** using a relational database structure consisting of dimension tables for products, payment methods, and locations, along with a central transactions table.
 
-Ten analytical SQL queries were developed to answer business-focused questions using JOINs, aggregations, GROUP BY, subqueries, CTEs, and window functions.
+Ten analytical SQL queries were developed to answer business-focused questions using `JOINs`, aggregations, `GROUP BY`, subqueries, CTEs, and window functions.
 
-Query	Business Question	SQL Concepts Used
-Q1	Which products generate the most revenue?	JOIN, GROUP BY, Aggregation
-Q2	Which products sell the most units?	JOIN, GROUP BY, Aggregation
-Q3	Which location performs best?	JOIN, GROUP BY, Aggregation
-Q4	Which payment methods are most used?	JOIN, GROUP BY, Aggregation
-Q5	How does product performance vary by location?	Multiple JOINs, GROUP BY
-Q6	Which products generate above-average revenue?	Subquery, HAVING, Aggregation
-Q7	What is the top-revenue product in each location?	CTE, Window Function (ROW_NUMBER)
-Q8	What is the monthly revenue trend?	Date Functions, GROUP BY, Aggregation
-Q9	What payment methods are preferred by location?	Multiple JOINs, GROUP BY
-Q10	Which products have above-average transaction value?	Subquery, HAVING, Aggregation
-Key SQL Techniques Demonstrated
-Relational data modeling using dimension and transaction tables
-INNER JOIN for combining related datasets
-GROUP BY and aggregate functions such as SUM(), COUNT(), and AVG()
-HAVING for filtering aggregated results
-Subqueries for above-average comparisons
-CTEs for breaking complex analysis into logical steps
-ROW_NUMBER() with PARTITION BY to rank products within each location
-SQL date functions for monthly trend analysis
-Pandas Validation
+### Analytical Queries
 
-To verify the reliability of the SQL analysis, each of the 10 SQL queries was independently reproduced using Pandas.
+| Query | Business Question | SQL Concepts Used |
+|---|---|---|
+| Q1 | Which products generate the most revenue? | JOIN, GROUP BY, Aggregation |
+| Q2 | Which products sell the most units? | JOIN, GROUP BY, Aggregation |
+| Q3 | Which location performs best? | JOIN, GROUP BY, Aggregation |
+| Q4 | Which payment methods are most used? | JOIN, GROUP BY, Aggregation |
+| Q5 | How does product performance vary by location? | Multiple JOINs, GROUP BY |
+| Q6 | Which products generate above-average revenue? | Subquery, HAVING, Aggregation |
+| Q7 | What is the top-revenue product in each location? | CTE, ROW_NUMBER(), Window Function |
+| Q8 | What is the monthly revenue trend? | Date Functions, GROUP BY, Aggregation |
+| Q9 | What payment methods are preferred by location? | Multiple JOINs, GROUP BY |
+| Q10 | Which products have above-average transaction value? | Subquery, HAVING, Aggregation |
 
-The results were compared across the relevant dimensions and metrics, including revenue, units sold, transaction counts, average transaction value, rankings, and monthly trends.
+### SQL Techniques Demonstrated
 
-Validation Results
-Query	Validation Metrics	Result
-Q1	Units Sold, Revenue	✅ PASS
-Q2	Units Sold, Transactions, Avg. Quantity	✅ PASS
-Q3	Transactions, Units, Revenue, Avg. Transaction Value	✅ PASS
-Q4	Transactions, Units, Revenue, Avg. Transaction Value	✅ PASS
-Q5	Units Sold, Revenue by Location & Product	✅ PASS
-Q6	Above-Average Products & Revenue	✅ PASS
-Q7	Top Product & Revenue by Location	✅ PASS
-Q8	Monthly Transactions, Units, Revenue, Avg. Transaction Value	✅ PASS
-Q9	Transactions, Revenue & Avg. Transaction Value by Location & Payment	✅ PASS
-Q10	Transaction Count & Avg. Transaction Value	✅ PASS
-Final Validation Outcome
+- Relational data modeling using dimension and transaction tables
+- `JOIN` operations to combine related datasets
+- `GROUP BY` with `SUM()`, `COUNT()`, and `AVG()`
+- `HAVING` for filtering aggregated results
+- Subqueries for above-average comparisons
+- CTEs for structuring complex analysis
+- `ROW_NUMBER()` with `PARTITION BY` for ranking
+- SQL date functions for monthly trend analysis
 
-10/10 SQL queries passed cross-validation against Pandas.
+---
+
+## Pandas Validation
+
+To verify the reliability of the SQL analysis, each of the 10 SQL queries was independently reproduced using **Pandas**.
+
+The SQL and Pandas results were compared across the relevant dimensions and metrics, including revenue, units sold, transaction counts, average transaction value, rankings, and monthly trends.
+
+### Validation Results
+
+| Query | Validation Metrics | Result |
+|---|---|---|
+| Q1 | Units Sold, Revenue | PASS |
+| Q2 | Units Sold, Transactions, Average Quantity | PASS |
+| Q3 | Transactions, Units, Revenue, Average Transaction Value | PASS |
+| Q4 | Transactions, Units, Revenue, Average Transaction Value | PASS |
+| Q5 | Units Sold, Revenue by Location and Product | PASS |
+| Q6 | Above-Average Products and Revenue | PASS |
+| Q7 | Top Product and Revenue by Location | PASS |
+| Q8 | Monthly Transactions, Units, Revenue, Average Transaction Value | PASS |
+| Q9 | Transactions, Revenue and Average Transaction Value by Location and Payment Method | PASS |
+| Q10 | Transaction Count and Average Transaction Value | PASS |
+
+### Validation Outcome
+
+**10/10 SQL queries passed cross-validation against Pandas.**
 
 The matching results provide confidence that the SQL queries correctly reproduce the analytical calculations performed during the Python/Pandas analysis.
 
-Data-quality note: 460 transactions contained missing transaction dates. These records were excluded from the monthly revenue trend because they could not be assigned to a calendar month. This treatment was kept consistent during validation.
+### Data Quality Note
+
+During validation, **460 transactions were found to have missing transaction dates**.
+
+These records were excluded from the monthly revenue trend because they could not be assigned to a calendar month. The same treatment was applied consistently during validation.
