@@ -48,7 +48,7 @@ dirty-cafe-sales-analysis/
 │   └── quantity_vs_total_spent.png
 │
 └── README.md
-
+```
 Task 1 — Data Cleaning
 
 The raw dataset contained missing values, inconsistent categorical data, and data quality issues.
